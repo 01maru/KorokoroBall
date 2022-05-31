@@ -2,25 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Bumper : MonoBehaviour
 {
-    public GameManager gameManager;
-
+    public float power = 10;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") 
+        Rigidbody r = other.GetComponent<Rigidbody>();
+        if (r != null)
         {
-            gameManager.AddCoinCount();
-            Destroy(gameObject);
+            Vector3 angle = (other.transform.position - transform.position).normalized;
+            r.velocity = angle * power;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject managerObject = GameObject.Find("GameManager");
-
-        gameManager = managerObject.GetComponent<GameManager>();
+        
     }
 
     // Update is called once per frame

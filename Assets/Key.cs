@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goal : MonoBehaviour
+public class Key : MonoBehaviour
 {
-    public GameObject clearText;
-    public GameObject nextButton;
-    public AudioSource audioSource;
+    public GameObject door;
+    public GameObject floor;
+    public GameObject floor2;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ÉSÅ[ÉãÅI");
-
-        clearText.SetActive(true);
-        nextButton.SetActive(true);
-        audioSource.Play();
+        Destroy(door);
+        Destroy(gameObject);
+        Destroy(floor);
+        Destroy(floor2);
     }
     // Start is called before the first frame update
     void Start()
     {
-
     }
-
 
     // Update is called once per frame
     void Update()
